@@ -23,4 +23,18 @@ console.log('Hello world');
          
     }
 
+    function getUserChoice(){
+        let input = prompt("Rock, paper, or scissors?");
+        input = input.toLowerCase();
+        return input;
+    }
+
+    function test(){
+        if (getUserChoice() === getComputerChoice()) {
+            console.log("draw");
+        } else {
+            console.log("something")
+        }
+    }
+
 </script>
