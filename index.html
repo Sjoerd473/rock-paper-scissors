@@ -1,6 +1,8 @@
 <script>
 console.log('Hello world');
 
+let humanScore = 0
+let computerScore = 0
 
 
 
@@ -22,12 +24,47 @@ console.log('Hello world');
          }
          
     }
-
-    function getUserChoice(){
+    // prompts the user for an input, then turns that input into lowercase, to aid in comparing to the computer choice.
+    function getHumanChoice(){
         let input = prompt("Rock, paper, or scissors?");
+            if (input === '' ){
+                alert('Invalid input');
+            } else {
         input = input.toLowerCase();
         return input;
     }
+}
+// Plays one round of rock paper scissors. Compares the outcome of two functions, and logs the outcome in the console.
+    function playRound(humanChoice, computerChoice){
+       if (humanChoice === computerChoice){
+        console.log("It's a draw, you both picked the same!")
+       } else if (humanChoice === 'rock' && computerChoice === 'scissors'){
+        console.log('You win! Rock beats scissors')
+        humanScore++
+       }  else if (humanChoice === 'rock' && computerChoice === 'paper'){
+        console.log('You lose! Paper beats rock')
+        computerScore++
+       } else if (humanChoice === 'paper' && computerChoice === 'rock'){
+        console.log('You win! Paper beats rock')
+        humanScore++
+       }  else if (humanChoice === 'paper' && computerChoice === 'scissors'){
+        console.log('You lose! Scissors beats paper')
+        computerScore++
+       } else if (humanChoice === 'scissors' && computerChoice === 'paper'){
+        console.log('You win! Scissors beats paper')
+        humanScore++
+       }  else if (humanChoice === 'scissors' && computerChoice === 'rock'){
+        console.log('You lose! Rock beats scissors')
+        computerScore++
+       }
+    }
+
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    
+
+
 
     function test(){
         if (getUserChoice() === getComputerChoice()) {
@@ -36,5 +73,5 @@ console.log('Hello world');
             console.log("something")
         }
     }
-
 </script>
+    
