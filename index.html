@@ -2,10 +2,31 @@
 console.log('Hello world');
 
 let humanScore = 0
-let computerScore = 0
+    let computerScore = 0
 
 
+    
 
+//Runs the game five times, keeps track of the score, and returns a message for win/loss/draw at the end.
+function playGame(){
+
+    humanScore = 0;
+    computerScore = 0;
+    
+    for (let  i = 0; i <= 4; i++) {
+    playRound(getHumanChoice(),getComputerChoice());
+    console.log(humanScore);
+    console.log(computerScore);
+    }
+
+        if (humanScore == computerScore) {
+            console.log("A draw, how boring");
+        } else if (humanScore > computerScore){
+            console.log("You managed to beat the computer, incredible!");
+        } else if (humanScore < computerScore){
+            console.log("You lose, beaten by a computer, how embarrassing")
+        }
+}
     // generates a random number between 1 to 3, then equates it to one of three different string values.
     function getComputerChoice(){
         let compNumber = Math.floor((Math.random()) * 3) + 1 ;
@@ -59,8 +80,7 @@ let computerScore = 0
        }
     }
 
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
+    
 
     
 
