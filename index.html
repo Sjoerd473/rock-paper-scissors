@@ -1,7 +1,6 @@
 <script>
-console.log('Hello world');
 
-let humanScore = 0
+    let humanScore = 0
     let computerScore = 0
 
 
@@ -48,7 +47,7 @@ function playGame(){
     // prompts the user for an input, then turns that input into lowercase, to aid in comparing to the computer choice.
     function getHumanChoice(){
         let input = prompt("Rock, paper, or scissors?");
-            if (input === '' ){
+            if (input === '' || input === 'test'){
                 alert('Invalid input');
             } else {
         input = input.toLowerCase();
@@ -57,7 +56,8 @@ function playGame(){
 }
 // Plays one round of rock paper scissors. Compares the outcome of two functions, and logs the outcome in the console.
     function playRound(humanChoice, computerChoice){
-       if (humanChoice === computerChoice){
+      
+         if (humanChoice === computerChoice){
         console.log("It's a draw, you both picked the same!")
        } else if (humanChoice === 'rock' && computerChoice === 'scissors'){
         console.log('You win! Rock beats scissors')
@@ -86,12 +86,6 @@ function playGame(){
 
 
 
-    function test(){
-        if (getUserChoice() === getComputerChoice()) {
-            console.log("draw");
-        } else {
-            console.log("something")
-        }
-    }
+ 
 </script>
     
