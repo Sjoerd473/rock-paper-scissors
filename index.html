@@ -1,1 +1,26 @@
+<script>
+console.log('Hello world');
 
+
+
+
+    // generates a random number between 1 to 3, then equates it to one of three different string values.
+    function getComputerChoice(){
+        let compNumber = Math.floor((Math.random()) * 3) + 1 ;
+
+            if (compNumber === 1) {
+        let compChoice = 'rock';
+        return compChoice
+        
+         } else if (compNumber === 2){
+        let compChoice = 'paper';
+        return compChoice
+        
+         } else if (compNumber === 3) {
+        let compChoice = 'scissors'
+        return compChoice
+         }
+         
+    }
+
+</script>
