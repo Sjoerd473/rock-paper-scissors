@@ -1,79 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
-    <button id="scissors" >Scissors</button>
+    <button id="scissors">Scissors</button>
+    <div id="humanScore"></div>
+    <div id = 'computerScore'></div>
+    <div id = 'gameCount'> </div>
+    <div id = 'result'></div>
     <script>
 
         let humanScore = 0
         let computerScore = 0
-    
-    
-        const rButton = document.querySelector("#rock");
-        rButton.addEventListener('click', playGame);
-        
-    
+        let gameCount = 0
 
-    
+
+        const rButton = document.querySelector("#rock");
+        rButton.addEventListener('click', playRock);
+        const hScore = document.querySelector('#humanScore')
+        hScore.textContent = `Your score is currently ${humanScore} points`
+        const cScore = document.querySelector('#computerScore');
+        cScore.textContent = `The computer currently has ${computerScore} points`
+        const gCount = document.querySelector('#gameCount');
+        gCount.textContent = `You have currently played ${gameCount} rounds`
+        const outcome = document.querySelector('#result')
+        outcome.textContent = 'Pick a button to start playing!'
+
+
+
+
+
         // generates a random number between 1 to 3, then equates it to one of three different string values.
-        function getComputerChoice(){
-            let compNumber = Math.floor((Math.random()) * 3) + 1 ;
-    
-                if (compNumber === 1) {
-            let compChoice = 'rock';
-            return compChoice
-            
-             } else if (compNumber === 2){
-            let compChoice = 'paper';
-            return compChoice
-            
-             } else if (compNumber === 3) {
-            let compChoice = 'scissors'
-            return compChoice
-             }
-             
+        function getComputerChoice() {
+            let compNumber = Math.floor((Math.random()) * 3) + 1;
+
+            if (compNumber === 1) {
+                let compChoice = 'rock';
+                return compChoice
+
+            } else if (compNumber === 2) {
+                let compChoice = 'paper';
+                return compChoice
+
+            } else if (compNumber === 3) {
+                let compChoice = 'scissors'
+                return compChoice
+            }
+
         }
-     
-    // Plays one round of rock paper scissors. Compares the outcome of two functions, and logs the outcome in the console.
-        function playRound(humanChoice, computerChoice){
-          
-             if (humanChoice === computerChoice){
-            console.log("It's a draw, you both picked the same!")
-           } else if (humanChoice === 'rock' && computerChoice === 'scissors'){
-            console.log('You win! Rock beats scissors')
-            humanScore++
-           }  else if (humanChoice === 'rock' && computerChoice === 'paper'){
-            console.log('You lose! Paper beats rock')
-            computerScore++
-           } else if (humanChoice === 'paper' && computerChoice === 'rock'){
-            console.log('You win! Paper beats rock')
-            humanScore++
-           }  else if (humanChoice === 'paper' && computerChoice === 'scissors'){
-            console.log('You lose! Scissors beats paper')
-            computerScore++
-           } else if (humanChoice === 'scissors' && computerChoice === 'paper'){
-            console.log('You win! Scissors beats paper')
-            humanScore++
-           }  else if (humanChoice === 'scissors' && computerChoice === 'rock'){
-            console.log('You lose! Rock beats scissors')
-            computerScore++
-           }
+
+        function playRock() {
+            let compNumber = Math.floor((Math.random()) * 3) + 1;
+
+            if (compNumber === 1) {
+                console.log("It's a draw, you both picked the same!")
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = "It's a draw, you both picked the same!"
+            } else if (compNumber === 2) {
+                console.log('You lose! Paper beats rock')
+                computerScore++
+                cScore.textContent = `The computer currently has ${computerScore} points`;
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = 'You lose! Paper beats rock'
+            } else if (compNumber === 3) {
+                console.log('You win! Rock beats scissors')
+                humanScore++
+                hScore.textContent = `Your score is currently ${humanScore} points`;
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = 'You win! Rock beats scissors'
+            }
         }
-    
-        
-    
-        
-    
-    
-    
-     
+
+        // Plays one round of rock paper scissors. Compares the outcome of two functions, and logs the outcome in the console.
+        function playRound(humanChoice, computerChoice) {
+
+            if (humanChoice === computerChoice) {
+                console.log("It's a draw, you both picked the same!")
+            } else if (humanChoice === 'rock' && computerChoice === 'scissors') {
+                console.log('You win! Rock beats scissors')
+                humanScore++
+            } else if (humanChoice === 'rock' && computerChoice === 'paper') {
+                console.log('You lose! Paper beats rock')
+                computerScore++
+            } else if (humanChoice === 'paper' && computerChoice === 'rock') {
+                console.log('You win! Paper beats rock')
+                humanScore++
+            } else if (humanChoice === 'paper' && computerChoice === 'scissors') {
+                console.log('You lose! Scissors beats paper')
+                computerScore++
+            } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
+                console.log('You win! Scissors beats paper')
+                humanScore++
+            } else if (humanChoice === 'scissors' && computerChoice === 'rock') {
+                console.log('You lose! Rock beats scissors')
+                computerScore++
+            }
+        }
+
+
+
+
+
+
+
+
     </script>
-           
+
 </body>
+
 </html>
