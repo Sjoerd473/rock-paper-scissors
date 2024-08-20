@@ -8,22 +8,30 @@
 </head>
 
 <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <div id="humanScore"></div>
-    <div id = 'computerScore'></div>
-    <div id = 'gameCount'> </div>
-    <div id = 'result'></div>
+    <div id="main">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        <div id="humanScore"></div>
+        <div id='computerScore'></div>
+        <div id='gameCount'> </div>
+        <div id='result'></div>
+    </div>
     <script>
 
         let humanScore = 0
         let computerScore = 0
         let gameCount = 0
+        const main = document.querySelector('#main');
 
 
         const rButton = document.querySelector("#rock");
         rButton.addEventListener('click', playRock);
+        const pButton = document.querySelector("#paper");
+        pButton.addEventListener('click', playPaper);
+        const sButton = document.querySelector("#scissors");
+        sButton.addEventListener('click', playScissors);
+
         const hScore = document.querySelector('#humanScore')
         hScore.textContent = `Your score is currently ${humanScore} points`
         const cScore = document.querySelector('#computerScore');
@@ -79,7 +87,126 @@
                 gCount.textContent = `You have currently played ${gameCount} rounds`
                 outcome.textContent = 'You win! Rock beats scissors'
             }
+            if (humanScore === 5 || computerScore === 5) {
+                endOfGame();
+            }
+
         }
+
+        function playPaper() {
+            let compNumber = Math.floor((Math.random()) * 3) + 1;
+
+            if (compNumber === 1) {
+                console.log("It's a draw, you both picked the same!")
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = "It's a draw, you both picked the same!"
+            } else if (compNumber === 2) {
+                console.log('You lose! Scissors beats paper')
+                computerScore++
+                cScore.textContent = `The computer currently has ${computerScore} points`;
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = 'You lose! Paper beats rock'
+            } else if (compNumber === 3) {
+                console.log('You win! Paper beats rock!')
+                humanScore++
+                hScore.textContent = `Your score is currently ${humanScore} points`;
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = 'You win! Paper beats rock!'
+            }
+            if (humanScore === 5 || computerScore === 5) {
+                endOfGame();
+            }
+
+        }
+
+        function playScissors() {
+            let compNumber = Math.floor((Math.random()) * 3) + 1;
+
+            if (compNumber === 1) {
+                console.log("It's a draw, you both picked the same!")
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = "It's a draw, you both picked the same!"
+            } else if (compNumber === 2) {
+                console.log('You lose! Rock beats scissors')
+                computerScore++
+                cScore.textContent = `The computer currently has ${computerScore} points`;
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = 'You lose! Rock beats scissors'
+            } else if (compNumber === 3) {
+                console.log('You win! Scissors beats paper')
+                humanScore++
+                hScore.textContent = `Your score is currently ${humanScore} points`;
+                gameCount++
+                gCount.textContent = `You have currently played ${gameCount} rounds`
+                outcome.textContent = 'You win! Paper beats rock!'
+            }
+            if (humanScore === 5 || computerScore === 5) {
+                endOfGame();
+            }
+
+        }
+
+        /* if (humanScore === 5 || computerScore === 5 ) {
+             let newGameButton = document.createElement('button')
+             newGameButton.textContent = 'Play a new game'
+             
+             main.replaceChildren(newGameButton)
+
+             if (humanScore > computerScore){
+                 let winner = "Congratulations, you've won!"
+                 
+             } else {
+                 let winner = "Too bad! You lost!"
+                 
+             }
+            
+             let victory  = document.createElement('div')
+             victory.textContent = `The final outcome of this game, after ${gameCount} rounds of play is:
+                                     ${humanScore} number of points for our human player
+                                     ${computerScore} number of points for the computer.
+                                     In other words... ${winner}`;
+             main.replaceChildren(victory)    ;
+             
+            } */
+
+        function endOfGame() {
+            const refreshPage = () => {
+                location.reload();
+            }
+            let newGameButton = document.createElement('button');
+            newGameButton.textContent = 'Play Again'
+            newGameButton.addEventListener('click', refreshPage)
+
+
+            let victory = document.createElement('div')
+            if (humanScore === 5){
+            victory.textContent = `The final outcome of this game, after ${gameCount} rounds of play is:
+                                        ${humanScore} for our human player, and ${computerScore}
+                                        for our computer... Congratulations for winning!`
+                                        
+            } else {
+                victory.textContent = `The final outcome of this game, after ${gameCount} rounds of play is:
+                                        ${humanScore} for our human player, and ${computerScore}
+                                        for our computer... You lost, too bad!`
+            }
+            main.replaceChildren(victory, newGameButton);
+
+        }
+
+        /* function startNewGame() {
+             gameCount = 0
+             humanScore = 0
+             computerScore = 0
+
+             winner.remove();
+         } */
+
+
 
         // Plays one round of rock paper scissors. Compares the outcome of two functions, and logs the outcome in the console.
         function playRound(humanChoice, computerChoice) {
